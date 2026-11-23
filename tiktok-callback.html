@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connected – UGC Poster</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="style.css">
+</head>
+<body><main>
+<nav><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></nav>
+<h1 id="h">TikTok authorization</h1>
+<p id="msg">Finishing up…</p>
+<p id="codebox" style="display:none">If UGC Poster asks for it, copy this whole page address (URL) and paste it into UGC Poster.</p>
+<script>
+  // This page only reads the result TikTok put in the address bar and shows it to the owner.
+  // Nothing is sent anywhere.
+  var q = new URLSearchParams(location.search);
+  var msg = document.getElementById("msg");
+  if (q.get("code")) {
+    document.getElementById("h").textContent = "TikTok account connected";
+    msg.textContent = "Authorization received. You can go back to UGC Poster.";
+    document.getElementById("codebox").style.display = "block";
+  } else if (q.get("error")) {
+    document.getElementById("h").textContent = "Not connected";
+    msg.textContent = "TikTok returned: " + q.get("error") + (q.get("error_description") ? " – " + q.get("error_description") : "");
+  } else {
+    msg.textContent = "This page is used by UGC Poster after authorizing a TikTok account.";
+  }
+</script>
+<footer>© 2026 Isaiah Choy · UGC Poster</footer>
+</main></body>
+</html>
